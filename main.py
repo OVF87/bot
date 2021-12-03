@@ -1,11 +1,11 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import ReplyKeyboardMarkup
 from config import TOKEN
-from smile import get_anekdot
+from smile import get_anekdot, get_bash
 
 
 def get_main_keyboard():
-    reply_keyboard = [['Анекдот']]
+    reply_keyboard = [['Цитата BasOrg'], ['Анекдот']]
     main_keyboard = ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True)
     return main_keyboard
 
@@ -19,6 +19,7 @@ if __name__ == '__main__':
     dispatcher = updater.dispatcher
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex('Анекдот'), get_anekdot))
+    updater.dispatcher.add_handler(MessageHandler(Filters.regex('Цитата BasOrg'), get_bash))
     updater.start_polling()
     updater.idle()
 
