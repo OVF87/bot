@@ -6,17 +6,12 @@ def get_city_id(s_city_name):
     res = requests.get("http://api.openweathermap.org/data/2.5/find",
                        params={'q': s_city_name, 'type': 'like', 'units': 'metric', 'lang': 'ru', 'APPID': appid})
     data = res.json()
-    print(data)
     if data['list']:
         city_id = data['list'][0]['id']
-        print(city_id)
-
         return city_id
     else:
         data['list'][0]['id'] = 0
-        print(data)
         city_id = data['list'][0]['id']
-        print(city_id)
         return city_id
 
 
